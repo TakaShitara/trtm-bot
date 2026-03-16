@@ -36,6 +36,15 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 class ReportButton(discord.ui.Button):
 
     def __init__(self, label, image):
+        if label == "撮影開始":
+            style = discord.ButtonStyle.danger
+        elif label == "めい寝た":
+            style = discord.ButtonStyle.success
+        elif "拡張可能" in label:
+            style = discord.ButtonStyle.secondary
+        else:
+            style = discord.ButtonStyle.primary
+            
         super().__init__(
             label=label,
             style=discord.ButtonStyle.primary,
