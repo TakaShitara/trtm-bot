@@ -68,8 +68,6 @@ class ReportButton(discord.ui.Button):
             embed=embed
         )
 
-        await channel.send(embed=embed)
-
         # ボタン押下のレスポンス（ユーザーには表示されない）
         await interaction.response.defer()
 
