@@ -10,18 +10,18 @@ if not TOKEN:
     raise ValueError("TRTM_DISCORD_TOKEN が設定されていません")
 
 # 修正予定！
-TARGET_CHANNEL_ID = 123456789012345678
+TARGET_CHANNEL_ID = 1219311541300625529
 
 # 修正済み
 GITHUB_PAGES_BASE = "https://takashitara.github.io/trtm-bot/images"
 
 # 修正予定
 BUTTONS = [
-    {"label": "開始", "image": "start.png"},
-    {"label": "終了", "image": "finish.png"},
-    {"label": "離席", "image": "afk.png"},
-    {"label": "準備OK", "image": "ready.png"},
-    {"label": "戻りました", "image": "back.png"},
+    {"label": "撮影開始", "image": "rec.png"},
+    {"label": "めい寝た", "image": "sleep.png"},
+    {"label": "洗濯完了", "image": "wash.png"},
+    {"label": "拡張可能", "image": "ready.png"},
+    {"label": "拡張可能", "image": "back.png"},
 ]
 
 intents = discord.Intents.default()
