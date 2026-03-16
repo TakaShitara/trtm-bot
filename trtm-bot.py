@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import os
 import time
+from discord import app_commands
 
 # 修正済み
 TOKEN = os.getenv("TRTM_DISCORD_TOKEN")
@@ -31,7 +32,11 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 class ReportButton(discord.ui.Button):
 
     def __init__(self, label, image):
-        super().__init__(label=label, style=discord.ButtonStyle.primary)
+        super().__init__(
+            label=label,
+            style=discord.ButtonStyle.primary,
+            custom_id=f"trtm_{label}"
+        )
         self.image = image
 
     async def callback(self, interaction: discord.Interaction):
@@ -71,11 +76,10 @@ class ReportView(discord.ui.View):
             )
 
 
-@bot.command()
-@commands.has_permissions(administrator=True)
-async def setup_panel(ctx):
+@bot.tree.command(name="setup_panel", description="報告パネルを表示")
+async def setup_panel(interaction: discord.Interaction):
 
-    await ctx.send(
+    await interaction.response.send_message(
         "報告パネル",
         view=ReportView()
     )
@@ -85,6 +89,7 @@ async def setup_panel(ctx):
 async def on_ready():
 
     bot.add_view(ReportView())
+    await bot.tree.sync()
 
     print(f"Logged in as {bot.user}")
 
