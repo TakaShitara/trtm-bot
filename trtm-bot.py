@@ -44,10 +44,10 @@ class ReportButton(discord.ui.Button):
             style = discord.ButtonStyle.secondary
         else:
             style = discord.ButtonStyle.primary
-            
+
         super().__init__(
             label=label,
-            style=discord.ButtonStyle.primary,
+            style=style,
             custom_id=f"trtm_{label}"
         )
         self.image = image
