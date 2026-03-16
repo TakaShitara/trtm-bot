@@ -10,6 +10,10 @@ TOKEN = os.getenv("TRTM_DISCORD_TOKEN")
 if not TOKEN:
     raise ValueError("TRTM_DISCORD_TOKEN が設定されていません")
 
+# サーバーID
+GUILD_ID = 359006972290400257
+guild = discord.Object(id=GUILD_ID)
+
 # 修正予定！
 TARGET_CHANNEL_ID = 1219311541300625529
 
@@ -21,8 +25,8 @@ BUTTONS = [
     {"label": "撮影開始", "image": "rec.png"},
     {"label": "めい寝た", "image": "sleep.png"},
     {"label": "洗濯完了", "image": "wash.png"},
-    {"label": "拡張可能", "image": "ready.png"},
-    {"label": "拡張可能", "image": "back.png"},
+    {"label": "拡張可能１", "image": "ready.png"},
+    {"label": "拡張可能２", "image": "back.png"},
 ]
 
 intents = discord.Intents.default()
@@ -56,6 +60,13 @@ class ReportButton(discord.ui.Button):
 
         embed = discord.Embed()
         embed.set_image(url=image_url)
+
+        user = interaction.user.mention
+
+        await channel.send(
+            content=f"{user} が **{self.label}** を押しました",
+            embed=embed
+        )
 
         await channel.send(embed=embed)
 
